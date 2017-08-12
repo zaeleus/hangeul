@@ -294,6 +294,22 @@ pub fn rule_19(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllab
     (s, t)
 }
 
+pub fn rule_20(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
+    if let Some(j) = s.jongseong() {
+        if let Some(mut t) = t {
+            let k = t.choseong();
+
+            if (j == 'ㄴ' && k == 'ㄹ') || (j == 'ㄹ' && k == 'ㄴ') {
+                s.set_jongseong(Some('ㄹ'));
+                t.set_choseong('ㄹ');
+                return (s, Some(t));
+            }
+        }
+    }
+
+    (s, t)
+}
+
 pub fn rule_23(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {

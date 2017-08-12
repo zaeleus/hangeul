@@ -55,6 +55,7 @@ pub fn pronounce(word: &Word) -> String {
         let (u, v) = rule_17(u, v);
         let u = rule_18(u, v);
         let (u, v) = rule_19(u, v);
+        let (u, v) = rule_20(u, v);
 
         let (u, v) = rule_25(u, v);
 
@@ -258,6 +259,19 @@ mod tests {
         assert_eq!(t("석류"), "성뉴");
         assert_eq!(t("협력"), "혐녁");
         assert_eq!(t("법리"), "범니");
+    }
+
+    #[test]
+    fn test_rule_20() {
+        assert_eq!(t("난로"), "날로");
+        assert_eq!(t("신라"), "실라");
+        assert_eq!(t("천리"), "철리");
+        assert_eq!(t("광한루"), "광할루");
+        assert_eq!(t("대관령"), "대괄령");
+        assert_eq!(t("칼날"), "칼랄");
+        assert_eq!(t("물난리"), "물랄리");
+        // assert_eq!(t("줄넘기"), "줄럼끼");
+        assert_eq!(t("할는지"), "할른지");
     }
 
     #[test]
