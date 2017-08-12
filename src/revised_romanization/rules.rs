@@ -113,6 +113,29 @@ pub fn rule_12_1(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syll
     (s, t)
 }
 
+pub fn rule_12_2(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
+    if let Some(j) = s.jongseong() {
+        if let Some(mut t) = t {
+            if t.choseong() == 'ㅅ' {
+                let k = match j {
+                    'ㅎ' => Some(None),
+                    'ㄶ' => Some(Some('ㄴ')),
+                    'ㅀ' => Some(Some('ㄹ')),
+                    _ => None,
+                };
+
+                if let Some(k) = k {
+                    s.set_jongseong(k);
+                    t.set_choseong('ㅆ');
+                    return (s, Some(t));
+                }
+            }
+        }
+    }
+
+    (s, t)
+}
+
 pub fn rule_13(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if j != 'ㅇ' {
