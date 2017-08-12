@@ -65,7 +65,6 @@ pub fn pronounce(word: &Word) -> String {
         let u = rule_09(u, v);
         let u = rule_10(u, v);
         let u = rule_11(u, v);
-        let u = rule_11(u, v);
         let (u, v) = rule_12_1(u, v);
         let (u, v) = rule_12_2(u, v);
         let (u, v) = rule_12_3(u, v);
