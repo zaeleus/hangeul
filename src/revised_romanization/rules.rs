@@ -271,11 +271,19 @@ pub fn rule_18(mut s: Syllable, t: Option<Syllable>) -> Syllable {
     s
 }
 
-pub fn rule_19(s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
+pub fn rule_19(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {
             if t.choseong() == 'ㄹ' {
-                if j == 'ㅁ' || j == 'ㅇ' {
+                let k = match j {
+                    'ㅁ' | 'ㅇ' => Some(j),
+                    'ㄱ' => Some('ㅇ'),
+                    'ㅂ' => Some('ㅁ'),
+                    _ => None
+                };
+
+                if k.is_some() {
+                    s.set_jongseong(k);
                     t.set_choseong('ㄴ');
                     return (s, Some(t));
                 }

@@ -238,6 +238,11 @@ mod tests {
         assert_eq!(t("강릉"), "강능");
         assert_eq!(t("항로"), "항노");
         assert_eq!(t("대통령"), "대통녕");
+
+        assert_eq!(t("막론"), "망논");
+        assert_eq!(t("석류"), "성뉴");
+        assert_eq!(t("협력"), "혐녁");
+        assert_eq!(t("법리"), "범니");
     }
 
     #[test]
