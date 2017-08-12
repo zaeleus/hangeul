@@ -172,9 +172,9 @@ mod tests {
         assert_eq!(t("옷맵시"), "온맵씨");
         assert_eq!(t("있는"), "인는");
         assert_eq!(t("맞는"), "만는");
-        // assert_eq!(t("젖멍울"), "전멍울");
+        assert_eq!(t("젖멍울"), "전멍울");
         assert_eq!(t("쫓는"), "쫀는");
-        // assert_eq!(t("꽃망울"), "꼰망울");
+        assert_eq!(t("꽃망울"), "꼰망울");
         assert_eq!(t("붙는"), "분는");
         assert_eq!(t("놓는"), "논는");
         assert_eq!(t("잡는"), "잠는");

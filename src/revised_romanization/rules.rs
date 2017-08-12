@@ -79,11 +79,13 @@ pub fn rule_11(mut s: Syllable, t: Option<Syllable>) -> Syllable {
 
 pub fn rule_13(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
-        if let Some(mut t) = t {
-            if t.choseong() == 'ㅇ' {
-                s.set_jongseong(None);
-                t.set_choseong(j);
-                return (s, Some(t));
+        if j != 'ㅇ' {
+            if let Some(mut t) = t {
+                if t.choseong() == 'ㅇ' {
+                    s.set_jongseong(None);
+                    t.set_choseong(j);
+                    return (s, Some(t));
+                }
             }
         }
     }
