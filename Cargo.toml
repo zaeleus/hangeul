@@ -1,0 +1,10 @@
+[package]
+name = "hangeul"
+version = "0.1.0"
+authors = ["Michael Macias <zaeleus@gmail.com>"]
+
+[[bin]]
+name = "hangeul"
+doc = false
+
+[dependencies]
