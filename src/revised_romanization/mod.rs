@@ -47,6 +47,7 @@ pub fn pronounce(word: &Word) -> String {
         let u = rule_10(u, v);
         let u = rule_11(u, v);
         let u = rule_11(u, v);
+        let (u, v) = rule_12_1(u, v);
         let (u, v) = rule_14(u, v);
         let (u, v) = rule_23(u, v);
 
@@ -120,6 +121,16 @@ mod tests {
         // assert_eq!(t("젊다"), "점따");
         assert_eq!(t("읊고"), "읍꼬");
         assert_eq!(t("읊다"), "읍따");
+    }
+
+    #[test]
+    fn test_rule_12_1() {
+        assert_eq!(t("놓고"), "노코");
+        assert_eq!(t("좋던"), "조턴");
+        assert_eq!(t("쌓지"), "싸치");
+        assert_eq!(t("많고"), "만코");
+        assert_eq!(t("않던"), "안턴");
+        assert_eq!(t("닳지"), "달치");
     }
 
     #[test]
