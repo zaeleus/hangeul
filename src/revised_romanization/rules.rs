@@ -145,6 +145,25 @@ pub fn rule_17(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllab
     (s, t)
 }
 
+pub fn rule_18(mut s: Syllable, t: Option<Syllable>) -> Syllable {
+    if let Some(j) = s.jongseong() {
+        if t.map_or(false, |t| t.choseong() == 'ㄴ' || t.choseong() == 'ㅁ') {
+            let k = match j {
+                'ㄱ' | 'ㄲ' | 'ㅋ' | 'ㄳ' | 'ㄺ' => Some('ㅇ'),
+                'ㄷ' | 'ㅅ' | 'ㅆ' | 'ㅈ' | 'ㅊ' | 'ㅌ' | 'ㅎ' => Some('ㄴ'),
+                'ㅂ' | 'ㅍ' | 'ㄼ' | 'ㄿ' | 'ㅄ' => Some('ㅁ'),
+                _ => None,
+            };
+
+            if k.is_some() {
+                s.set_jongseong(k);
+            }
+        }
+    }
+
+    s
+}
+
 pub fn rule_23(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {

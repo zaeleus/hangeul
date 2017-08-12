@@ -38,6 +38,7 @@ pub fn pronounce(word: &Word) -> String {
         let v = t;
 
         let (u, v) = rule_17(u, v);
+        let u = rule_18(u, v);
 
         let u = rule_05_1(u);
         let u = rule_05_3(u);
@@ -155,6 +156,33 @@ mod tests {
 		assert_eq!(t("땀받이"), "땀바지");
 		assert_eq!(t("밭이"), "바치");
 		assert_eq!(t("벼훑이"), "벼훌치");
+    }
+
+    #[test]
+    fn test_rule_18() {
+        assert_eq!(t("먹는"), "멍는");
+        assert_eq!(t("국물"), "궁물");
+        assert_eq!(t("깎는"), "깡는");
+        assert_eq!(t("키읔만"), "키응만");
+        assert_eq!(t("몫몫이"), "몽목씨");
+        assert_eq!(t("긁는"), "긍는");
+        assert_eq!(t("흙만"), "흥만");
+        assert_eq!(t("닫는"), "단는");
+        assert_eq!(t("짓는"), "진는");
+        assert_eq!(t("옷맵시"), "온맵씨");
+        assert_eq!(t("있는"), "인는");
+        assert_eq!(t("맞는"), "만는");
+        // assert_eq!(t("젖멍울"), "전멍울");
+        assert_eq!(t("쫓는"), "쫀는");
+        // assert_eq!(t("꽃망울"), "꼰망울");
+        assert_eq!(t("붙는"), "분는");
+        assert_eq!(t("놓는"), "논는");
+        assert_eq!(t("잡는"), "잠는");
+        assert_eq!(t("밥물"), "밤물");
+        assert_eq!(t("앞마당"), "암마당");
+        assert_eq!(t("밟는"), "밤는");
+        assert_eq!(t("읊는"), "음는");
+        assert_eq!(t("없는"), "엄는");
     }
 
     #[test]
