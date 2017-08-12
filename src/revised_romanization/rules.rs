@@ -311,3 +311,28 @@ pub fn rule_23(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllab
 
     (s, t)
 }
+
+pub fn rule_25(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
+    if let Some(j) = s.jongseong() {
+        if let Some(mut t) = t {
+            let k = match j {
+                'ㄼ' | 'ㄾ' => match t.choseong() {
+                    'ㄱ' => Some('ㄲ'),
+                    'ㄷ' => Some('ㄸ'),
+                    'ㅅ' => Some('ㅆ'),
+                    'ㅈ' => Some('ㅉ'),
+                    _ => None,
+                },
+                _ => None,
+            };
+
+            if let Some(k) = k {
+                s.set_jongseong(Some('ㄹ'));
+                t.set_choseong(k);
+                return (s, Some(t));
+            }
+        }
+    }
+
+    (s, t)
+}
