@@ -166,6 +166,21 @@ pub fn rule_18(mut s: Syllable, t: Option<Syllable>) -> Syllable {
     s
 }
 
+pub fn rule_19(s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
+    if let Some(j) = s.jongseong() {
+        if let Some(mut t) = t {
+            if t.choseong() == 'ㄹ' {
+                if j == 'ㅁ' || j == 'ㅇ' {
+                    t.set_choseong('ㄴ');
+                    return (s, Some(t));
+                }
+            }
+        }
+    }
+
+    (s, t)
+}
+
 pub fn rule_23(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {
