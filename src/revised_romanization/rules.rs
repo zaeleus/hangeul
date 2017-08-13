@@ -229,6 +229,28 @@ pub fn rule_14(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllab
     (s, t)
 }
 
+pub fn rule_16(s: Syllable, t: Option<Syllable>) -> Option<Syllable> {
+    if let Some(mut t) = t {
+        let j = match (s.as_char(), t.as_char()) {
+            ('디', '귿') => Some('ㅅ'),
+            ('지', '읒') => Some('ㅅ'),
+            ('치', '읓') => Some('ㅅ'),
+            ('키', '읔') => Some('ㄱ'),
+            ('티', '읕') => Some('ㅅ'),
+            ('피', '읖') => Some('ㅂ'),
+            ('히', '읗') => Some('ㅅ'),
+            _ => None,
+        };
+
+        if j.is_some() {
+            t.set_jongseong(j);
+            return Some(t);
+        }
+    }
+
+    t
+}
+
 pub fn rule_17(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {

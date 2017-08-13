@@ -52,6 +52,7 @@ pub fn pronounce(word: &Word) -> String {
     while let Some(u) = s {
         let v = t;
 
+        let v = rule_16(u, v);
         let (u, v) = rule_17(u, v);
         let u = rule_18(u, v);
         let (u, v) = rule_19(u, v);
@@ -208,6 +209,31 @@ mod tests {
 		assert_eq!(t("읊어"), "을퍼");
 		assert_eq!(t("값을"), "갑쓸");
 		assert_eq!(t("없어"), "업써");
+    }
+
+    #[test]
+    fn test_rule_16() {
+        assert_eq!(t("디귿이"), "디그시");
+        assert_eq!(t("디귿을"), "디그슬");
+        assert_eq!(t("디귿에"), "디그세");
+        assert_eq!(t("지읒이"), "지으시");
+        assert_eq!(t("지읒을"), "지으슬");
+        assert_eq!(t("지읒에"), "지으세");
+        assert_eq!(t("치읓이"), "치으시");
+        assert_eq!(t("치읓을"), "치으슬");
+        assert_eq!(t("치읓에"), "치으세");
+        assert_eq!(t("키읔이"), "키으기");
+        assert_eq!(t("키읔을"), "키으글");
+        assert_eq!(t("키읔에"), "키으게");
+        assert_eq!(t("티읕이"), "티으시");
+        assert_eq!(t("티읕을"), "티으슬");
+        assert_eq!(t("티읕에"), "티으세");
+        assert_eq!(t("피읖이"), "피으비");
+        assert_eq!(t("피읖을"), "피으블");
+        assert_eq!(t("피읖에"), "피으베");
+        assert_eq!(t("히읗이"), "히으시");
+        assert_eq!(t("히읗을"), "히으슬");
+        assert_eq!(t("히읗에"), "히으세");
     }
 
     #[test]
