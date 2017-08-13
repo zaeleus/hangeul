@@ -200,15 +200,15 @@ mod tests {
 
     #[test]
     fn test_rule_14() {
-		assert_eq!(t("넋이"), "넉씨");
-		assert_eq!(t("앉아"), "안자");
-		assert_eq!(t("닭을"), "달글");
-		assert_eq!(t("젊어"), "절머");
-		assert_eq!(t("곬이"), "골씨");
-		assert_eq!(t("핥아"), "할타");
-		assert_eq!(t("읊어"), "을퍼");
-		assert_eq!(t("값을"), "갑쓸");
-		assert_eq!(t("없어"), "업써");
+        assert_eq!(t("넋이"), "넉씨");
+        assert_eq!(t("앉아"), "안자");
+        assert_eq!(t("닭을"), "달글");
+        assert_eq!(t("젊어"), "절머");
+        assert_eq!(t("곬이"), "골씨");
+        assert_eq!(t("핥아"), "할타");
+        assert_eq!(t("읊어"), "을퍼");
+        assert_eq!(t("값을"), "갑쓸");
+        assert_eq!(t("없어"), "업써");
     }
 
     #[test]
@@ -238,12 +238,12 @@ mod tests {
 
     #[test]
     fn test_rule_17() {
-		assert_eq!(t("곧이듣다"), "고지듣따");
-		assert_eq!(t("굳이"), "구지");
-		assert_eq!(t("미닫이"), "미다지");
-		assert_eq!(t("땀받이"), "땀바지");
-		assert_eq!(t("밭이"), "바치");
-		assert_eq!(t("벼훑이"), "벼훌치");
+        assert_eq!(t("곧이듣다"), "고지듣따");
+        assert_eq!(t("굳이"), "구지");
+        assert_eq!(t("미닫이"), "미다지");
+        assert_eq!(t("땀받이"), "땀바지");
+        assert_eq!(t("밭이"), "바치");
+        assert_eq!(t("벼훑이"), "벼훌치");
 
         assert_eq!(t("굳히다"), "구치다");
         assert_eq!(t("닫히다"), "다치다");
