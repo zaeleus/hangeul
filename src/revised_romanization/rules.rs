@@ -254,19 +254,24 @@ pub fn rule_16(s: Syllable, t: Option<Syllable>) -> Option<Syllable> {
 pub fn rule_17(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {
-            if t.choseong() == 'ㅇ' && t.jungseong() == 'ㅣ' {
-                let km = match j {
+            let km = match (t.choseong(), t.jungseong()) {
+                ('ㅇ', 'ㅣ') => match j {
                     'ㄷ' => Some((None, 'ㅈ')),
                     'ㅌ' => Some((None, 'ㅊ')),
                     'ㄾ' => Some((Some('ㄹ'), 'ㅊ')),
                     _ => None,
-                };
+                },
+                ('ㅎ', 'ㅣ') => match j {
+                    'ㄷ' => Some((None, 'ㅊ')),
+                    _ => None,
+                },
+                _ => None,
+            };
 
-                if let Some((k, m)) = km {
-                    s.set_jongseong(k);
-                    t.set_choseong(m);
-                    return (s, Some(t));
-                }
+            if let Some((k, m)) = km {
+                s.set_jongseong(k);
+                t.set_choseong(m);
+                return (s, Some(t));
             }
         }
     }

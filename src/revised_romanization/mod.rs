@@ -244,6 +244,10 @@ mod tests {
 		assert_eq!(t("땀받이"), "땀바지");
 		assert_eq!(t("밭이"), "바치");
 		assert_eq!(t("벼훑이"), "벼훌치");
+
+        assert_eq!(t("굳히다"), "구치다");
+        assert_eq!(t("닫히다"), "다치다");
+        assert_eq!(t("묻히다"), "무치다");
     }
 
     #[test]
