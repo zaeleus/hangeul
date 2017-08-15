@@ -4,12 +4,12 @@ use ::Word;
 use self::rules::*;
 
 pub struct Pronouncer {
-    reflect_tenses: bool,
+    strict: bool,
 }
 
 impl Pronouncer {
-    pub fn new(reflect_tenses: bool) -> Pronouncer {
-        Pronouncer { reflect_tenses: reflect_tenses }
+    pub fn new(strict: bool) -> Pronouncer {
+        Pronouncer { strict: strict }
     }
 
     pub fn pronounce(&self, word: &Word) -> Word {
@@ -31,12 +31,24 @@ impl Pronouncer {
             let (u, v) = rule_24(self, u, v);
             let (u, v) = rule_25(self, u, v);
 
-            let u = rule_05_1(u);
-            let u = rule_05_3(u);
+            let u = if self.strict {
+                let u = rule_05_1(u);
+                let u = rule_05_3(u);
+                u
+            } else {
+                u
+            };
 
             let (u, v) = rule_12_1(u, v);
-            let (u, v) = rule_12_1_1(u, v);
-            let (u, v) = rule_12_1_2(u, v);
+
+            let (u, v) = if self.strict {
+                let (u, v) = rule_12_1_1(u, v);
+                let (u, v) = rule_12_1_2(u, v);
+                (u, v)
+            } else {
+                (u, v)
+            };
+
             let (u, v) = rule_12_2(u, v);
             let (u, v) = rule_12_3(u, v);
             let (u, v) = rule_12_4(u, v);
@@ -64,7 +76,7 @@ impl Pronouncer {
     //
     // This is effectively no-op when `reflect_tenses` is false.
     pub fn reflect_tense(&self, j: char) -> char {
-        if !self.reflect_tenses {
+        if !self.strict{
             match j {
                 'ㄱ' | 'ㄷ' | 'ㅂ' |  'ㅅ' |  'ㅈ' => j,
                 _ => unreachable!(),
