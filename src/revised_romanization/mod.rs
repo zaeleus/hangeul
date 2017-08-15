@@ -129,11 +129,11 @@ mod tests {
     fn test_rule_10() {
         assert_eq!(t("넋"), "넉");
         assert_eq!(t("넋과"), "넉꽈");
-        // assert_eq!(t("앉다"), "안따");
+        assert_eq!(t("앉다"), "안따");
         assert_eq!(t("여덟"), "여덜");
-        // assert_eq!(t("넓다"), "널따");
+        assert_eq!(t("넓다"), "널따");
         assert_eq!(t("외곬"), "외골");
-        // assert_eq!(t("핥다"), "할따");
+        assert_eq!(t("핥다"), "할따");
         assert_eq!(t("값"), "갑");
         assert_eq!(t("없다"), "업따");
     }
@@ -145,7 +145,7 @@ mod tests {
         assert_eq!(t("맑다"), "막따");
         assert_eq!(t("늙지"), "늑찌");
         assert_eq!(t("삶"), "삼");
-        // assert_eq!(t("젊다"), "점따");
+        assert_eq!(t("젊다"), "점따");
         assert_eq!(t("읊고"), "읍꼬");
         assert_eq!(t("읊다"), "읍따");
     }
@@ -326,7 +326,7 @@ mod tests {
         assert_eq!(t("대관령"), "대괄령");
         assert_eq!(t("칼날"), "칼랄");
         assert_eq!(t("물난리"), "물랄리");
-        // assert_eq!(t("줄넘기"), "줄럼끼");
+        assert_eq!(t("줄넘기"), "줄럼끼");
         // assert_eq!(t("할는지"), "할른지");
     }
 
