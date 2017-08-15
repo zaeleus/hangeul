@@ -1,5 +1,6 @@
 use ::Syllable;
-use revised_romanization::{pronounce, transcribe};
+use pronunciation::Pronouncer;
+use revised_romanization::transcribe;
 
 /// A word composed of Hangeul syllables
 #[derive(Debug)]
@@ -39,7 +40,12 @@ impl Word {
     }
 
     pub fn romanize(&self) -> String {
-        let word = Word::new(pronounce(self));
-        transcribe(&word)
+        let pronouncer = Pronouncer::new(false);
+        let transformed_word = pronouncer.pronounce(self);
+        transcribe(&transformed_word)
+    }
+
+    pub fn to_string(&self) -> String {
+        self.0.clone()
     }
 }

@@ -1,5 +1,6 @@
 mod lexer;
 mod revised_romanization;
+mod pronunciation;
 mod syllable;
 mod word;
 
