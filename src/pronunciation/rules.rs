@@ -385,23 +385,23 @@ pub fn rule_20(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllab
     (s, t)
 }
 
-pub fn rule_23(ctx: &Pronouncer, mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
+pub fn rule_23(ctx: &Pronouncer, s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {
             let k = t.choseong();
 
-            let km = match j {
-                'ㄱ' | 'ㄷ' | 'ㅂ' => match k {
-                    'ㄱ' | 'ㄷ' | 'ㅂ' | 'ㅅ' | 'ㅈ' => {
-                        Some((j, ctx.reflect_tense(k)))
-                    },
+            let m = match j {
+                'ㄱ' | 'ㄲ' | 'ㅋ' | 'ㄳ'
+                        | 'ㄺ' | 'ㄷ' | 'ㅅ' | 'ㅆ'
+                        | 'ㅈ' | 'ㅊ' | 'ㅌ' | 'ㅂ'
+                        | 'ㅍ' | 'ㄼ' | 'ㄿ' | 'ㅄ' => match k {
+                    'ㄱ' | 'ㄷ' | 'ㅂ' | 'ㅅ' | 'ㅈ' => Some(ctx.reflect_tense(k)),
                     _ => None,
                 },
                 _ => None,
             };
 
-            if let Some((k, m)) = km {
-                s.set_jongseong(Some(k));
+            if let Some(m) = m {
                 t.set_choseong(m);
                 return (s, Some(t));
             }
