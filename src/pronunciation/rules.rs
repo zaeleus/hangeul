@@ -45,7 +45,12 @@ pub fn rule_10(mut s: Syllable, t: Option<Syllable>) -> Syllable {
             let k = match j {
                 'ㄳ' => Some('ㄱ'),
                 'ㄵ' => Some('ㄴ'),
-                'ㄼ' | 'ㄽ' | 'ㄾ' => Some('ㄹ'),
+                'ㄼ' => if s.choseong() == 'ㅂ' && s.jungseong() == 'ㅏ' {
+                    Some('ㅂ')
+                } else {
+                    Some('ㄹ')
+                },
+                'ㄽ' | 'ㄾ' => Some('ㄹ'),
                 'ㅄ' => Some('ㅂ'),
                 _ => None,
             };
@@ -437,7 +442,7 @@ pub fn rule_24(ctx: &Pronouncer, mut s: Syllable, t: Option<Syllable>) -> (Sylla
     (s, t)
 }
 
-pub fn rule_25(ctx: &Pronouncer, mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
+pub fn rule_25(ctx: &Pronouncer, s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {
             let k = t.choseong();
@@ -451,7 +456,6 @@ pub fn rule_25(ctx: &Pronouncer, mut s: Syllable, t: Option<Syllable>) -> (Sylla
             };
 
             if let Some(m) = m {
-                s.set_jongseong(Some('ㄹ'));
                 t.set_choseong(m);
                 return (s, Some(t));
             }

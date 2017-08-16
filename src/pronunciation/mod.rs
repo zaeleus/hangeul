@@ -141,6 +141,13 @@ mod tests {
         assert_eq!(p("핥다"), "할따");
         assert_eq!(p("값"), "갑");
         assert_eq!(p("없다"), "업따");
+
+        assert_eq!(p("밟다"), "밥따");
+        assert_eq!(p("밟소"), "밥쏘");
+        assert_eq!(p("밟지"), "밥찌");
+        assert_eq!(p("밟는"), "밤는");
+        assert_eq!(p("밟게"), "밥께");
+        assert_eq!(p("밟고"), "밥꼬");
     }
 
     #[test]
