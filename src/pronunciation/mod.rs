@@ -72,9 +72,9 @@ impl Pronouncer {
         Word::new(res)
     }
 
-    // Transforms the given plain consonant into a tensed one.
-    //
-    // This is effectively no-op when `reflect_tenses` is false.
+    /// Transforms the given plain consonant into a tensed one.
+    ///
+    /// This is effectively no-op when `strict` is false.
     pub fn reflect_tense(&self, j: char) -> char {
         if !self.strict{
             match j {
