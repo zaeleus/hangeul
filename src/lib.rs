@@ -8,16 +8,24 @@ use lexer::{Lexer, Token};
 pub use syllable::Syllable;
 pub use word::Word;
 
+/// Romanizes text using Revised Romanization rules.
+///
+/// # Examples
+///
+/// ```
+/// use hangeul::romanize;
+///
+/// assert_eq!(romanize("볼빨간사춘기"), "bolppalgansachungi");
+/// assert_eq!(romanize("여보세요"), "yeoboseyo");
+/// assert_eq!(romanize("MOMOLAND - 뿜뿜"), "MOMOLAND - ppumppum");
+/// ```
 pub fn romanize(input: &str) -> String {
-    let lexer = Lexer::new(input.chars());
-    let mut res = String::new();
-
-    for token in lexer {
-        match token {
-            Token::Word(word) => res.push_str(&word.romanize()),
-            Token::Any(s) => res.push_str(&s),
-        }
-    }
-
-    res
+    Lexer::new(input.chars())
+        .map(|token| {
+            match token {
+                Token::Word(word) => word.romanize(),
+                Token::Any(s) => s,
+            }
+        })
+        .collect()
 }
