@@ -113,6 +113,20 @@ mod tests {
     }
 
     #[test]
+    fn test_rule_05_3() {
+        assert_eq!(p("늴리리"), "닐리리");
+        assert_eq!(p("닁큼"), "닝큼");
+        assert_eq!(p("무늬"), "무니");
+        assert_eq!(p("띄어쓰기"), "띠어쓰기");
+        assert_eq!(p("씌어"), "씨어");
+        assert_eq!(p("틔어"), "티어");
+        assert_eq!(p("희어"), "히어");
+        assert_eq!(p("희떱다"), "히떱따");
+        assert_eq!(p("희망"), "히망");
+        assert_eq!(p("유희"), "유히");
+    }
+
+    #[test]
     fn test_rule_09() {
         assert_eq!(p("닦다"), "닥따");
         assert_eq!(p("키읔"), "키윽");
