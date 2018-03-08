@@ -43,10 +43,12 @@ it would sound in the target language.
     hypenated, e.g., "제주도" => "jejudo" (expected: "Jeju-do").
 
   * Names are neither capitalized nor spaced, e.g., "김세정" => "gimsejeong"
-    (expected: "Gim Se Jeong"). Note that names commonly use de facto
-    romanization rules (see "[Discussion of Surname Romanization]"). The
+    (expected: "Gim Se Jeong"). Note that names still commonly use
+    [McCune-Reischauer] romanization and other de facto rules over Revised
+    Romanization (see also "[Discussion of Surname Romanization]"). The
     previous example would more likely be "Kim Se Jeong" or "Kim Se Jung".
 
+[McCune-Reischauer]: https://en.wikipedia.org/wiki/McCune%E2%80%93Reischauer
 [Discussion of Surname Romanization]: http://korean.go.kr/front/etcData/etcDataView.do?etc_seq=179&mn_id=46
 
 ## Resources
