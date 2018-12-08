@@ -2,6 +2,7 @@
 name = "hangeul"
 version = "0.1.0"
 authors = ["Michael Macias <zaeleus@gmail.com>"]
+license = "MIT"
 
 [[bin]]
 name = "hangeul"
