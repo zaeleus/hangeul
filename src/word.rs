@@ -1,6 +1,6 @@
-use ::Syllable;
-use pronunciation::Pronouncer;
-use revised_romanization::transcribe;
+use crate::Syllable;
+use crate::pronunciation::Pronouncer;
+use crate::revised_romanization::transcribe;
 
 /// A word composed of Hangeul syllables
 #[derive(Debug)]

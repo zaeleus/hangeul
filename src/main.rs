@@ -1,4 +1,4 @@
-extern crate hangeul;
+use hangeul;
 
 use std::env;
 

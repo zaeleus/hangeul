@@ -1,6 +1,6 @@
 mod rules;
 
-use ::Word;
+use crate::Word;
 use self::rules::*;
 
 pub struct Pronouncer {
@@ -96,7 +96,7 @@ impl Pronouncer {
 
 #[cfg(test)]
 mod tests {
-    use ::Word;
+    use crate::Word;
     use super::Pronouncer;
 
     fn p(s: &str) -> String {

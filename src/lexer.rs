@@ -1,6 +1,6 @@
 use std::iter::Peekable;
 
-use ::{Syllable, Word};
+use crate::{Syllable, Word};
 
 #[derive(Debug)]
 pub enum Token {

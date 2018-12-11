@@ -1,5 +1,5 @@
-use ::Syllable;
-use pronunciation::Pronouncer;
+use crate::Syllable;
+use crate::pronunciation::Pronouncer;
 
 pub fn rule_05_1(mut s: Syllable) -> Syllable {
     match s.choseong() {

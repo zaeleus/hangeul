@@ -1,6 +1,6 @@
 mod jamo;
 
-use ::Word;
+use crate::Word;
 use self::jamo::*;
 
 pub fn transcribe(word: &Word) -> String {

@@ -4,9 +4,9 @@ mod pronunciation;
 mod syllable;
 mod word;
 
-use lexer::{Lexer, Token};
-pub use syllable::Syllable;
-pub use word::Word;
+use crate::lexer::{Lexer, Token};
+pub use crate::syllable::Syllable;
+pub use crate::word::Word;
 
 /// Romanizes text using Revised Romanization rules.
 ///
