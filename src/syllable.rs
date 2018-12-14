@@ -110,17 +110,40 @@ impl Syllable {
     /// ```
     /// use hangeul::Syllable;
     ///
-    /// assert!(Syllable::new('이').is_ok());
-    /// assert!(Syllable::new('달').is_ok());
-    /// assert!(Syllable::new('a').is_err());
-    /// assert!(Syllable::new('あ').is_err());
+    /// assert!(Syllable::from_char('이').is_ok());
+    /// assert!(Syllable::from_char('달').is_ok());
+    /// assert!(Syllable::from_char('a').is_err());
+    /// assert!(Syllable::from_char('あ').is_err());
     /// ```
-    pub fn new(s: char) -> Result<Syllable, Error> {
-        let j = extract_choseong(s)?;
-        let k = extract_jungseong(s)?;
-        let m = extract_jongseong(s)?;
+    pub fn from_char(c: char) -> Result<Syllable, Error> {
+        let j = extract_choseong(c)?;
+        let k = extract_jungseong(c)?;
+        let m = extract_jongseong(c)?;
+        Ok(Syllable::new(j, k, m))
+    }
 
-        Ok(Syllable(j, k, m))
+    /// Creates a new syllable from jamos.
+    ///
+    /// Note this does not validate the resulting `Syllable`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use hangeul::Syllable;
+    ///
+    /// let s = Syllable::new('ㅇ', 'ㅣ', None);
+    /// assert_eq!(s.choseong(), 'ㅇ');
+    /// assert_eq!(s.jungseong(), 'ㅣ');
+    /// assert_eq!(s.jongseong(), None);
+    ///
+    /// let s = Syllable::new('ㄷ', 'ㅏ', Some('ㄹ'));
+    /// assert_eq!(s.choseong(), 'ㄷ');
+    /// assert_eq!(s.jungseong(), 'ㅏ');
+    /// assert_eq!(s.jongseong(), Some('ㄹ'));
+    /// ```
+
+    pub fn new(j: char, k: char, m: Option<char>) -> Syllable {
+        Syllable(j, k, m)
     }
 
     pub fn choseong(&self) -> char {

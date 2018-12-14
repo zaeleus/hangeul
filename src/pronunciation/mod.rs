@@ -9,7 +9,7 @@ pub struct Pronouncer {
 
 impl Pronouncer {
     pub fn new(strict: bool) -> Pronouncer {
-        Pronouncer { strict: strict }
+        Pronouncer { strict }
     }
 
     pub fn pronounce(&self, word: &Word) -> Word {
@@ -17,8 +17,8 @@ impl Pronouncer {
         let mut it = syllables.iter().peekable();
         let mut res = String::new();
 
-        let mut s = it.next().map(|t| *t);
-        let mut t = it.next().map(|t| *t);
+        let mut s = it.next().cloned();
+        let mut t = it.next().cloned();
 
         while let Some(u) = s {
             let v = t;
@@ -66,7 +66,7 @@ impl Pronouncer {
             res.push(u.as_char());
 
             s = v;
-            t = it.next().map(|t| *t);
+            t = it.next().cloned();
         }
 
         Word::new(res)

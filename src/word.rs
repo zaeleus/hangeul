@@ -30,13 +30,13 @@ impl Word {
     ///
     /// let word = Word::new("좋아요");
     /// assert_eq!(word.syllables(), vec![
-    ///     Syllable::new('좋').unwrap(),
-    ///     Syllable::new('아').unwrap(),
-    ///     Syllable::new('요').unwrap(),
+    ///     Syllable::from_char('좋').unwrap(),
+    ///     Syllable::from_char('아').unwrap(),
+    ///     Syllable::from_char('요').unwrap(),
     /// ]);
     /// ```
     pub fn syllables(&self) -> Vec<Syllable> {
-        self.0.chars().filter_map(|c| Syllable::new(c).ok()).collect()
+        self.0.chars().filter_map(|c| Syllable::from_char(c).ok()).collect()
     }
 
     pub fn romanize(&self) -> String {
