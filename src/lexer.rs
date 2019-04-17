@@ -8,11 +8,14 @@ pub enum Token {
     Word(Word),
 }
 
-pub struct Lexer<I: Iterator<Item=char>> {
+pub struct Lexer<I: Iterator<Item = char>> {
     it: Peekable<I>,
 }
 
-impl<I> Lexer<I> where I: Iterator<Item=char> {
+impl<I> Lexer<I>
+where
+    I: Iterator<Item = char>,
+{
     pub fn new(it: I) -> Lexer<I> {
         Lexer { it: it.peekable() }
     }
@@ -56,7 +59,10 @@ impl<I> Lexer<I> where I: Iterator<Item=char> {
     }
 }
 
-impl<I> Iterator for Lexer<I> where I: Iterator<Item=char> {
+impl<I> Iterator for Lexer<I>
+where
+    I: Iterator<Item = char>,
+{
     type Item = Token;
 
     fn next(&mut self) -> Option<Self::Item> {

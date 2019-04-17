@@ -1,12 +1,14 @@
-use crate::Syllable;
 use crate::pronunciation::Pronouncer;
+use crate::Syllable;
 
 pub fn rule_05_1(mut s: Syllable) -> Syllable {
     match s.choseong() {
-        'ㅈ' | 'ㅉ' | 'ㅊ' => if s.jungseong() == 'ㅕ' {
-            s.set_jungseong('ㅓ');
-        },
-        _ => {},
+        'ㅈ' | 'ㅉ' | 'ㅊ' => {
+            if s.jungseong() == 'ㅕ' {
+                s.set_jungseong('ㅓ');
+            }
+        }
+        _ => {}
     }
 
     s
@@ -45,11 +47,13 @@ pub fn rule_10(mut s: Syllable, t: Option<Syllable>) -> Syllable {
             let k = match j {
                 'ㄳ' => Some('ㄱ'),
                 'ㄵ' => Some('ㄴ'),
-                'ㄼ' => if s.choseong() == 'ㅂ' && s.jungseong() == 'ㅏ' {
-                    Some('ㅂ')
-                } else {
-                    Some('ㄹ')
-                },
+                'ㄼ' => {
+                    if s.choseong() == 'ㅂ' && s.jungseong() == 'ㅏ' {
+                        Some('ㅂ')
+                    } else {
+                        Some('ㄹ')
+                    }
+                }
                 'ㄽ' | 'ㄾ' => Some('ㄹ'),
                 'ㅄ' => Some('ㅂ'),
                 _ => None,
@@ -118,7 +122,6 @@ pub fn rule_12_1(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syll
 
     (s, t)
 }
-
 
 pub fn rule_12_1_1(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
@@ -222,7 +225,6 @@ pub fn rule_12_4(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syll
                     _ => None,
                 };
 
-
                 if let Some(k) = k {
                     s.set_jongseong(None);
                     t.set_choseong(k);
@@ -251,7 +253,11 @@ pub fn rule_13(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllab
     (s, t)
 }
 
-pub fn rule_14(ctx: &Pronouncer, mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
+pub fn rule_14(
+    ctx: &Pronouncer,
+    mut s: Syllable,
+    t: Option<Syllable>,
+) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {
             if t.choseong() == 'ㅇ' {
@@ -359,7 +365,7 @@ pub fn rule_19(mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllab
                     'ㅁ' | 'ㅇ' => Some(j),
                     'ㄱ' => Some('ㅇ'),
                     'ㅂ' => Some('ㅁ'),
-                    _ => None
+                    _ => None,
                 };
 
                 if k.is_some() {
@@ -396,10 +402,8 @@ pub fn rule_23(ctx: &Pronouncer, s: Syllable, t: Option<Syllable>) -> (Syllable,
             let k = t.choseong();
 
             let m = match j {
-                'ㄱ' | 'ㄲ' | 'ㅋ' | 'ㄳ'
-                        | 'ㄺ' | 'ㄷ' | 'ㅅ' | 'ㅆ'
-                        | 'ㅈ' | 'ㅊ' | 'ㅌ' | 'ㅂ'
-                        | 'ㅍ' | 'ㄼ' | 'ㄿ' | 'ㅄ' => match k {
+                'ㄱ' | 'ㄲ' | 'ㅋ' | 'ㄳ' | 'ㄺ' | 'ㄷ' | 'ㅅ' | 'ㅆ' | 'ㅈ' | 'ㅊ'
+                | 'ㅌ' | 'ㅂ' | 'ㅍ' | 'ㄼ' | 'ㄿ' | 'ㅄ' => match k {
                     'ㄱ' | 'ㄷ' | 'ㅂ' | 'ㅅ' | 'ㅈ' => Some(ctx.reflect_tense(k)),
                     _ => None,
                 },
@@ -416,7 +420,11 @@ pub fn rule_23(ctx: &Pronouncer, s: Syllable, t: Option<Syllable>) -> (Syllable,
     (s, t)
 }
 
-pub fn rule_24(ctx: &Pronouncer, mut s: Syllable, t: Option<Syllable>) -> (Syllable, Option<Syllable>) {
+pub fn rule_24(
+    ctx: &Pronouncer,
+    mut s: Syllable,
+    t: Option<Syllable>,
+) -> (Syllable, Option<Syllable>) {
     if let Some(j) = s.jongseong() {
         if let Some(mut t) = t {
             let k = t.choseong();

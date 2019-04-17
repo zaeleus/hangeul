@@ -9,26 +9,23 @@ const SYLLABLES_LEN: usize = 19 * 21 * 28;
 const CHOSEONGS_OFFSET: usize = 0x1100;
 const CHOSEONGS_LEN: usize = 19;
 static CHOSEONGS: [char; CHOSEONGS_LEN] = [
-    'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ',
-    'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ',
-    'ㅌ', 'ㅍ', 'ㅎ',
+    'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ',
+    'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ',
 ];
 
 const JUNGSEONGS_OFFSET: usize = 0x1161;
 const JUNGSEONGS_LEN: usize = 21;
 static JUNGSEONGS: [char; JUNGSEONGS_LEN] = [
-    'ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ',
-    'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ',
-    'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ',
+    'ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ',
+    'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ',
 ];
 
 const JONGSEONGS_OFFSET: usize = 0x11a8;
 const JONGSEONGS_LEN: usize = 27;
 static JONGSEONGS: [char; JONGSEONGS_LEN] = [
-    'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ',
-    'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ',
-    'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ',
-    'ㅌ', 'ㅍ', 'ㅎ',
+    'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ',
+    'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ',
+    'ㅎ',
 ];
 
 #[derive(Debug, Eq, PartialEq)]
@@ -174,7 +171,7 @@ impl Syllable {
     /// # Panics
     ///
     /// Panics when the given character is not a valid jungseong.
-    pub fn set_jungseong(&mut self, c: char)  {
+    pub fn set_jungseong(&mut self, c: char) {
         let u = c as usize;
 
         if is_between(u, JUNGSEONGS_OFFSET, JUNGSEONGS_OFFSET + JUNGSEONGS_LEN) {
@@ -226,7 +223,9 @@ fn extract_choseong(s: char) -> Result<char, Error> {
 
     let u = s as usize;
     let i = (u - SYLLABLES_OFFSET) / (21 * 28);
-    CHOSEONGS.get(i).map_or(Err(Error::Indecomposable), |&c| Ok(c))
+    CHOSEONGS
+        .get(i)
+        .map_or(Err(Error::Indecomposable), |&c| Ok(c))
 }
 
 fn extract_jungseong(s: char) -> Result<char, Error> {
@@ -236,7 +235,9 @@ fn extract_jungseong(s: char) -> Result<char, Error> {
 
     let u = s as usize;
     let i = ((u - SYLLABLES_OFFSET) % (21 * 28)) / 28;
-    JUNGSEONGS.get(i).map_or(Err(Error::Indecomposable), |&c| Ok(c))
+    JUNGSEONGS
+        .get(i)
+        .map_or(Err(Error::Indecomposable), |&c| Ok(c))
 }
 
 fn extract_jongseong(s: char) -> Result<Option<char>, Error> {
@@ -248,9 +249,9 @@ fn extract_jongseong(s: char) -> Result<Option<char>, Error> {
     let i = (u - SYLLABLES_OFFSET as isize) % 28 - 1;
 
     if i >= 0 {
-        JONGSEONGS.get(i as usize).map_or(Err(Error::Indecomposable), |&c| {
-            Ok(Some(c))
-        })
+        JONGSEONGS
+            .get(i as usize)
+            .map_or(Err(Error::Indecomposable), |&c| Ok(Some(c)))
     } else {
         Ok(None)
     }

@@ -1,6 +1,6 @@
 mod lexer;
-mod revised_romanization;
 mod pronunciation;
+mod revised_romanization;
 mod syllable;
 mod word;
 
@@ -21,11 +21,9 @@ pub use crate::word::Word;
 /// ```
 pub fn romanize(input: &str) -> String {
     Lexer::new(input.chars())
-        .map(|token| {
-            match token {
-                Token::Word(word) => word.romanize(),
-                Token::Any(s) => s,
-            }
+        .map(|token| match token {
+            Token::Word(word) => word.romanize(),
+            Token::Any(s) => s,
         })
         .collect()
 }

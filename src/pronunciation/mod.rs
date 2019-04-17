@@ -1,7 +1,7 @@
 mod rules;
 
-use crate::Word;
 use self::rules::*;
+use crate::Word;
 
 pub struct Pronouncer {
     strict: bool,
@@ -76,9 +76,9 @@ impl Pronouncer {
     ///
     /// This is effectively no-op when `strict` is false.
     pub fn reflect_tense(&self, j: char) -> char {
-        if !self.strict{
+        if !self.strict {
             match j {
-                'ㄱ' | 'ㄷ' | 'ㅂ' |  'ㅅ' |  'ㅈ' => j,
+                'ㄱ' | 'ㄷ' | 'ㅂ' | 'ㅅ' | 'ㅈ' => j,
                 _ => unreachable!(),
             }
         } else {
@@ -96,8 +96,8 @@ impl Pronouncer {
 
 #[cfg(test)]
 mod tests {
-    use crate::Word;
     use super::Pronouncer;
+    use crate::Word;
 
     fn p(s: &str) -> String {
         let word = Word::new(s);
@@ -184,8 +184,7 @@ mod tests {
         assert_eq!(p("많고"), "만코");
         assert_eq!(p("않던"), "안턴");
         assert_eq!(p("닳지"), "달치");
-
-   }
+    }
 
     #[test]
     fn test_rule_12_1_1() {

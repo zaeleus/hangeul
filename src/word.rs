@@ -1,6 +1,6 @@
-use crate::Syllable;
 use crate::pronunciation::Pronouncer;
 use crate::revised_romanization::transcribe;
+use crate::Syllable;
 
 /// A word composed of Hangeul syllables
 #[derive(Debug)]
@@ -17,7 +17,10 @@ impl Word {
     /// use hangeul::Word;
     /// let _ = Word::new("몰라요");
     /// ```
-    pub fn new<S>(s: S) -> Word where S: Into<String> {
+    pub fn new<S>(s: S) -> Word
+    where
+        S: Into<String>,
+    {
         Word(s.into())
     }
 
@@ -36,7 +39,10 @@ impl Word {
     /// ]);
     /// ```
     pub fn syllables(&self) -> Vec<Syllable> {
-        self.0.chars().filter_map(|c| Syllable::from_char(c).ok()).collect()
+        self.0
+            .chars()
+            .filter_map(|c| Syllable::from_char(c).ok())
+            .collect()
     }
 
     pub fn romanize(&self) -> String {

@@ -1,7 +1,7 @@
 mod jamo;
 
-use crate::Word;
 use self::jamo::*;
+use crate::Word;
 
 pub fn transcribe(word: &Word) -> String {
     let syllables = word.syllables();
